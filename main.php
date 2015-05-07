@@ -99,7 +99,7 @@
             fclose($sepaXMLFileHandle);
 
             // XML-Datei erzeugen, mit der Form 'UEM-2015-05-02.xml'
-            $messageFileHandle = fopen($config['Allgemein']['logpfad'] . $currentMap . "_" . date("Y.m.d-H:i:s") . ".log", "w");
+            $messageFileHandle = fopen($config['Allgemein']['logpfad'] . $currentMap . "_" . date("Y.m.d-H.i.s") . ".log", "w");
             fwrite($messageFileHandle, implode($messages, PHP_EOL));
             fclose($messageFileHandle);
         }
