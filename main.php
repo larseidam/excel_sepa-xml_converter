@@ -6,9 +6,9 @@
  * Time: 14:02
  *
  * Exit-Codes:
- *  -1 Keine MAP angegeben.
- *  -2 MAP-Bezeichner nicht in Excel-Tabelle enthalten.
- *  -3 XML Datei schon vorhanden.
+ *  1 Keine MAP angegeben.
+ *  2 MAP-Bezeichner nicht in Excel-Tabelle enthalten.
+ *  3 XML Datei schon vorhanden.
  */
     include 'vendor/simplexlsx/simplexlsx.class.php';
     include 'functions.php';
@@ -26,7 +26,7 @@
     $optionArray = getopt("fhlm::", array("force", "help", "list", "map::"));
 
     // Konsolen-Hilfstext ausgeben
-    if (isset($optionArray["h"]) || isset($optionArray["help"])) {
+    if (0 == count($optionArray) || isset($optionArray["h"]) || isset($optionArray["help"])) {
         echo(generateHelpStr());
         exit;
     }
@@ -47,8 +47,9 @@
     $mapsAvailable = array_reverse($mapsAvailable);
 
     if (isset($optionArray["l"]) || isset($optionArray["list"])) {
-        echo(implode($mapsAvailable, PHP_EOL));
-        exit;
+        echo implode($mapsAvailable, PHP_EOL);
+        echo PHP_EOL;
+        exit(0);
     }
     if (isset($optionArray["m"]) || isset($optionArray["map"])) {
         $currentMap = "";
@@ -57,14 +58,15 @@
         } elseif(isset($optionArray["map"]) && false !== $optionArray["map"]) {
             $currentMap = $optionArray["map"];
         } else {
-            echo "Sie müssen eine Map angeben!" .PHP_EOL;
-            exit -1;
+            echo "Sie müssen eine Map angeben!" . PHP_EOL;
+            exit(1);
         }
         if (false === array_search($currentMap, $mapsAvailable)) {
-            echo "Überweisungsmappen-Bezeichner " . $currentMap . " ist in Excel-Tabelle nicht vorhanden!" .PHP_EOL;
-            echo "Folgende Bezeichner sind vorhanden:" .PHP_EOL;
-            echo(implode($mapsAvailable, PHP_EOL));
-            exit -2;
+            echo "Überweisungsmappen-Bezeichner " . $currentMap . " ist in Excel-Tabelle nicht vorhanden!" . PHP_EOL;
+            echo "Folgende Bezeichner sind vorhanden:" . PHP_EOL;
+            echo implode($mapsAvailable, PHP_EOL);
+            echo PHP_EOL;
+            exit(2);
         }
         // alle Zeilennummern einer bestimmten Überweisungsmappen-Bezeichnung ermitteln
         $currentMapRowNumbers = array_keys(array_column($xlsx->rows(), $mapColumnNumber), $currentMap);
@@ -88,8 +90,8 @@
         if (file_exists ( $config['Allgemein']['sepapfad'] . $currentMap . ".xml" )
             && false == isset($optionArray["f"])
             && false ==  isset($optionArray["force"])) {
-            echo "Die Datei " . $currentMap . ".xml ist schon vorhanden." . PHP_EOL . "Zum überschreiben bitte Option -f oder --force benutzen.";
-            exit -3;
+            echo "Die Datei " . $currentMap . ".xml ist schon vorhanden." . PHP_EOL . "Zum überschreiben bitte Option -f oder --force benutzen." . PHP_EOL;
+            exit(3);
         } else {
             // XML-Datei erzeugen, mit der Form 'UEM-2015-05-02.xml'
             $sepaXMLFileHandle = fopen($config['Allgemein']['sepapfad'] . $currentMap . ".xml", "w");
@@ -103,9 +105,9 @@
         }
     }
     if (0 != count($messages)) {
-        echo "Folgende Probleme sind während der Erstellung der SEPA-XML-Datei aufgetreten:" .PHP_EOL . "  ";
+        echo "Folgende Probleme sind während der Erstellung der SEPA-XML-Datei aufgetreten:" . PHP_EOL . "  ";
         echo implode($messages, PHP_EOL . "  ");
         echo PHP_EOL;
     }
-    exit;
+    exit(0);
 ?>
