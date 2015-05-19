@@ -16,6 +16,12 @@
     require_once 'vendor/autoload.php';
     use Digitick\Sepa\DomBuilder\DomBuilderFactory;
 
+    // Hearderinformation content-type und charset setzen
+    header("Content-Type: text/plain; charset=UTF-8");
+
+    // Zeitzone setzen
+    date_default_timezone_set("Europe/Berlin");
+
     // Konfiguration einlesen
     $config = parse_ini_file("config.ini", true);
 
@@ -75,12 +81,17 @@
 
         // Array für alle notwendigen Splatennumern und mit Überweisungs-Bezeichner als Schlüssel
         $neededColumnNumbers = array();
+        $headlineRowValues = array_column($headlineRow, 'value');
+        array_walk($headlineRowValues, "filterNewLine");
+
         foreach ($config['Spaltenamen'] as $bankTransferName => $columnName) {
-            if ("" != $columnName && false != array_search($columnName, array_column($headlineRow, 'value'))) {
+;
+            if ("" != $columnName && false != array_search($columnName, $headlineRowValues)) {
                 // Ermittlung der Spalte für die Überweisungsmappen
-                $neededColumnNumbers[$bankTransferName] = array_search($columnName, array_column($headlineRow, 'value'));
+                $neededColumnNumbers[$bankTransferName] = array_search($columnName, $headlineRowValues);
             }
         }
+
         // SEPA-Datei mit den Überweisungen aus der Excel-Tabelle erzeugen lassen
         $sepaFile = getSepaFile($currentMap, $currentMapRows, $neededColumnNumbers);
 

@@ -17,6 +17,11 @@
         else
             return false;
     }
+// TODO: Kommentar schreiben
+    function filterNewLine(&$item1, $key)
+    {
+        $item1 = str_replace("\n","\\n", $item1);
+    }
 
     /*
      * Funktion erzeugt Sepa File
