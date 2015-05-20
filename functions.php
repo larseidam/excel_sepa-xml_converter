@@ -84,6 +84,10 @@
             // Zahlungsinformationen zusammenfügen
             $paymentInformation->addTransfer($transfer);
         }
+        $messages[] = "";
+        $messages[] = "Anzahl an Zeilen in der Excel-Tabelle: " . count($currentMapRows);
+        $messages[] = "Anzahl an Überweisungen: " . $paymentInformation->getNumberOfTransactions();
+        $messages[] = "Gesamtsumme: " . (($paymentInformation->getControlSumCents()) / 100);
 
         // Zahlungsinformationen zur SEPA-Datei hinzufügen
         $sepaFile->addPaymentInformation($paymentInformation);
