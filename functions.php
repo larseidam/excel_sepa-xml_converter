@@ -55,7 +55,14 @@
             $bic = isset($neededColumnNumbers['bic']) ? $currentMapRow[$neededColumnNumbers['bic']] : "";
             $zweck1 = isset($neededColumnNumbers['zweck1']) ? $currentMapRow[$neededColumnNumbers['zweck1']] : "";
             $zweck2 = isset($neededColumnNumbers['zweck2']) ? $currentMapRow[$neededColumnNumbers['zweck2']] : "";
-            $zweck = "" != $zweck2 ? $zweck1 . " " . $zweck2 : $zweck1;
+            $zweck = "" != $zweck2 ?
+                $config['Verwendungszweck']['prefixZweck1']
+                . $zweck1
+                . $config['Verwendungszweck']['trenner']
+                . $config['Verwendungszweck']['prefixZweck2']
+                . $zweck2
+                : $config['Verwendungszweck']['prefixZweck1']
+                . $zweck1;
 
             if (1 != preg_match($config['Kontrollregex']['betragregex'], $betrag)){
                 $messages[] = "Zeile " . ($currentMapRowNumber + 1) . ": " . $betrag . " ist kein gültiger Betrag und wird deswegen nicht übernommen!";
