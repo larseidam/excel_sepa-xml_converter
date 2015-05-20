@@ -10,7 +10,7 @@
  *  2 MAP-Bezeichner nicht in Excel-Tabelle enthalten.
  *  3 XML Datei schon vorhanden.
  */
-    include 'vendor/simplexlsx/simplexlsx.class.php';
+    include 'lib/simplexlsx/simplexlsx.class.php';
     include 'functions.php';
 
     require_once 'vendor/autoload.php';
