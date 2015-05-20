@@ -17,7 +17,12 @@
         else
             return false;
     }
-// TODO: Kommentar schreiben
+
+    /**
+     * Funktion ersetzt/escape Newline-Zeichen mit "\n"
+     * @param $item1 elememt im Array
+     * @param $key Schlüssel im Array
+     */
     function filterNewLine(&$item1, $key)
     {
         $item1 = str_replace("\n","\\n", $item1);
@@ -41,10 +46,10 @@
 
         // Zahlungsinformationen (Sender) erstellen
         $paymentInformation = new PaymentInformation(
-            $currentMap, // Payment Info ID
-            $config['Importkonto']['iban'], // IBAN the money is transferred from
-            $config['Importkonto']['bic'], // BIC
-            $config['Importkonto']['name'] // Debitor Name
+            $currentMap, // Zahlungs-ID
+            $config['Importkonto']['iban'], // IBAN vom Sender
+            $config['Importkonto']['bic'], // BIC vom Sender
+            $config['Importkonto']['name'] // Sender Name
         );
 
         foreach ($currentMapRows as $currentMapRowNumber => $currentMapRow) {
@@ -64,6 +69,7 @@
                 : $config['Verwendungszweck']['prefixZweck1']
                 . $zweck1;
 
+            // Prüfungen ob bestimmte Werte (Betrag, IBAN, BIC) syntaktisch korrekt sind, wenn nicht Log-Ausgabe
             if (1 != preg_match($config['Kontrollregex']['betragregex'], $betrag)){
                 $messages[] = "Zeile " . ($currentMapRowNumber + 1) . ": " . $betrag . " ist kein gültiger Betrag und wird deswegen nicht übernommen!";
                 $betrag = "";
@@ -81,19 +87,25 @@
 
             // Zahlungsinformationen (Empfänger) anlegen
             $transfer = new CustomerCreditTransferInformation(
-                $betrag, // Amount
-                $iban, //IBAN of creditor
-                $name //Name of Creditor
+                $betrag, // Geldbetrag
+                $iban, //IBAN des Empfängers
+                $name //Name des Empfängers
             );
-            $transfer->setBic($bic); // Set the BIC explicitly
+            // BIC Und Zahlungsinformationen müssen explizit gesetzt werden
+            $transfer->setBic($bic);
             $transfer->setRemittanceInformation($zweck);
 
             // Zahlungsinformationen zusammenfügen
             $paymentInformation->addTransfer($transfer);
         }
+
+        // Log-Ausgabe von Kontroll-Informationen
         $messages[] = "";
+        // Wieviele Excel-Tabellen-Zeilen wurden verarbeitet
         $messages[] = "Anzahl an Zeilen in der Excel-Tabelle: " . count($currentMapRows);
+        // Wieviele Überweisungen urden angelegt
         $messages[] = "Anzahl an Überweisungen: " . $paymentInformation->getNumberOfTransactions();
+        // Was ist die Gesamtsumme von allen Überweisungen
         $messages[] = "Gesamtsumme: " . (($paymentInformation->getControlSumCents()) / 100);
 
         // Zahlungsinformationen zur SEPA-Datei hinzufügen
