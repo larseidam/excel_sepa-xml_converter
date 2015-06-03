@@ -1,13 +1,13 @@
 ﻿; Allgemeine Konfiguration
 [Allgemein]
 ; Speicherort der Excel-Tabelle
-tabellenpfad = "example.xlsx"
+tabellenpfad = "example\\example.xlsx"
 
 ; Speicherort für die SEPA-XML-Datei
-sepapfad = "sepa-xml/"
+sepapfad = "example\\sepa-xml\\"
 
 ; Speicherort für die LOG-Datei
-logpfad = "logs/"
+logpfad = "example\\logs\\"
 
 ; Namenszeile in der Excel-Tabelle
 namenszeile = 2
