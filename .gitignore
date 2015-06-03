@@ -6,3 +6,6 @@
 *UEM-*.xml
 *UEM-*.log
 config.ini
+*.lock
+*.phar
+/vendor/*
