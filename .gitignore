@@ -1,5 +1,4 @@
-/php-binary-x32/*
-/php-binary-x64/*
+/php-binary*/*
 /.idea/*
 *.iml
 *.xls*

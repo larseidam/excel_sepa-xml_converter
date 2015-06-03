@@ -131,8 +131,8 @@ Function showMapSelectBoxDialog ($maps)
 }
 
 # Funktion erzeugt SEPA-XML-FILE
-Function generateSepaXmlFile ($selectedMap, $architecture) {
-    $returnMassage = & php-binary-$architecture\php.exe main.php --map=$selectedMap
+Function generateSepaXmlFile ($selectedMap) {
+    $returnMassage = & php-binary\php.exe main.php --map=$selectedMap
     $returnMassageWithNL = ""
     $returnStatus = $lastexitcode
     $returnValue = $FALSE
@@ -145,7 +145,7 @@ Function generateSepaXmlFile ($selectedMap, $architecture) {
     } elseif ($returnStatus -eq 3) {
          $returnValue = showTextDialog "Datei $selectedMap.xml ist vorhanden! Überschreiben?" "Nein" "Ja"
          if ($returnValue) {
-            $returnMassage = & php-binary-$architecture\php.exe main.php -force --map=$selectedMap
+            $returnMassage = & php-binary\php.exe main.php -force --map=$selectedMap
             $returnStatus = $lastexitcode
             if ($returnStatus -eq 0) {
                 $returnMassageWithNL = $returnMassage -join "`r`n"
@@ -163,14 +163,8 @@ Function generateSepaXmlFile ($selectedMap, $architecture) {
     return $returnValue
 }
 
-# Rechner-Architektur ermitteln um entsprechendes php binary zu verwenden
-$architecture = "x32"
-if ($ENV:PROCESSOR_ARCHITECTURE -eq "AMD64") {
-    $architecture = "x64"
-}
-
 # alle verfügbaren Überweisungsmappen-Bezeichner ermitteln
-$maps = & php-binary-$architecture\php.exe main.php -l
+$maps = & php-binary\php.exe main.php -l
 
 $noexit = $TRUE
 while ($noexit) {
@@ -183,7 +177,7 @@ while ($noexit) {
     } elseif (-NOT ($selectedMap -match '^UEM-[0-9]{4}-[0-9]{2}-[0-9]{2}$')) {
         $noexit = showTextDialog "Kein korrekter Überweisungsmappen-Bezeichner" "Beenden" "Wiederholen"
     } else {
-        $noexit = generateSepaXmlFile $selectedMap $architecture
+        $noexit = generateSepaXmlFile $selectedMap
     }
 }
 
