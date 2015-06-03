@@ -1,9 +1,6 @@
 /php-binary*/*
 /.idea/*
 *.iml
-*.xls*
-*UEM-*.xml
-*UEM-*.log
 config.ini
 *.lock
 *.phar
