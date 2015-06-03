@@ -15,7 +15,7 @@
  *   erstellt werden soll.
  *
  *
- * Beschränkung:
+ * Einschränkung:
  *   Quicken importiert Überweisungen nur für ein Auftragskonto erlaubt,
  *   sind alle Überweisungen im einem Auftragskonto (in der Konfiguration
  *   Importkonto genannt)
@@ -36,7 +36,7 @@
  *       UEM-2014-02-02
  *
  *   Nun kann der Benutzer einen Bezeichner auswählen und das Programm erneut
- *   starten um für diesen Bezeichner alle Überweiungen in eine SEPA-XML Datei
+ *   starten, um für diesen Bezeichner alle Überweiungen in eine SEPA-XML Datei
  *   zu transformieren. Folgender Befehl erzeugt eine SEPA-XML Datei für den
  *   Bezeichner UEM-2015-05-02:
  *     php main.php --map=UEM-2015-05-02
@@ -78,8 +78,12 @@
  *   Spaltenname für die erste Zeile des Verwendungszwecks
  *   Spaltenname für die zweite Zeile des Verwendungszwecks
  *
+ *   Prefix für Verwendungszweck Zeile 1
+ *   Prefix für Verwendungszweck Zeile 2
+ *   Trennzeichen zwichen Verwendungszweck Zeile 1 und Zeile 2
  *
- * Programm-Beschreibung:
+ *
+ * Verwendete Bibliotheken:
  *   Zum Auslesen der Daten aus der Excel-Tabelle wird die
  *   PHP-Klasse simplexlsx von Sergey Shuchkin verwendet.
  *   http://www.phpclasses.org/package/6279-PHP-Parse-and-retrieve-data-from-Excel-XLS-files.html
@@ -136,7 +140,7 @@
 
     // Ermittlung welche verschiedenen Arten von Überweisungsmappen-Bezeichnungen existieren
     $mapsAvailable = array_filter(array_unique(array_column($xlsx->rows(), $mapColumnNumber)), "correctMapStr");
-    // Überweisungsmappen-Bezeichnungen sortieren und invertieren damit, aktuellste Bezeichnung ganz oben steht
+    // Überweisungsmappen-Bezeichnungen sortieren und invertieren, damit aktuellste Bezeichnung immer ganz oben steht
     sort ($mapsAvailable);
     $mapsAvailable = array_reverse($mapsAvailable);
 
