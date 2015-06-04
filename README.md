@@ -40,8 +40,10 @@ Installation
 * runtergeladene Zip-Datei in den Ordner `php-binary` im Projektordner entpacken
 * Program mit folgendem Befehl starten
   `php-binary\php.exe main.php`
-> Im Windows Branch sind die verwendeten Bibliotheken direkt enthalten und müssen nicht mittels Composer installiert
-  werden, da meist kein git usw. zur Verfügung steht.
+
+
+    Im Windows Branch sind die verwendeten Bibliotheken direkt enthalten und müssen nicht mittels Composer installiert
+    werden, da meist kein git usw. zur Verfügung steht.
 
 ####Linux
 * Master Branch auschecken oder runterladen und entpacken
