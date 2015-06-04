@@ -1,0 +1,74 @@
+﻿; Allgemeine Konfiguration
+[Allgemein]
+; Speicherort der Excel-Tabelle
+;tabellenpfad = "/media/Share/Projekte/InfAI-Quicken/php/Belegliste.xlsx"
+;tabellenpfad = "Belegliste.xlsx"
+tabellenpfad = "\\\\informatik\\ifi\\ais\\_INFAI\\_Belege\\2015\\Belegliste.xlsx"
+
+; Speicherort für die SEPA-XML-Datei
+;sepapfad = /media/Share/Projekte/InfAI-Quicken/php/
+;sepapfad = "xmls\"
+sepapfad = "\\\\informatik\\ifi\\ais\\_INFAI\\_Belege\\2015\\UEMappen\\"
+
+; Speicherort für die LOG-Datei
+;logpfad = "logs\"
+logpfad = "\\\\informatik\\ifi\\ais\\_INFAI\\_Belege\\2015\\UEMappen\\logs\\"
+
+; Namenszeile in der Excel-Tabelle
+namenszeile = 2
+
+; Name der Überweisungsmappenspalte
+mapspaltenname = "Überwei-sungs-mappe vom"
+
+
+; Regex Ausdrücke die verschiedene Werte während der Verarbeitung prüfen und im Fehlerfahl eine Nachricht erzeugen
+[Kontrollregex]
+; regex für Überweisungsmappen-Bezeichner
+mapregex = "/UEM-\d{4}-\d{2}-\d{2}/"
+
+; regex für ein korrekten Betrag
+betragregex = "/^\d+\.\d{2}$/"
+
+; regex für ein korrekten IBAN
+ibanregex = "/^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$/"
+
+; regex für ein korrekten BIC
+bicregex = "/^([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)$/"
+
+
+; Angaben über das Konto, in welches die Überweisungen eingefügt werden sollen.
+[Importkonto]
+iban = "DE68210501700012345678"
+bic = "ESSEDE5F100"
+name = "InfAI Bank"
+firmenname = "InfAI"
+
+
+; Welcher Spaltename in der Excel-Tabelle hat welche Bedeutung in der Überweisung.
+; (Werden Elemente nicht benötigt, dann ein "" in die entsprechende Zeile eintragen.)
+[Spaltenamen]
+; Empfänger-IBAN
+iban = "Kontonr./IBAN des Empfängers"
+
+; Empfänger-BIC
+bic = "Bankleitzahl/BIC"
+
+; Empfänger-Name
+name = "Empfänger Firma/Name"
+
+; Betrag
+betrag = "Zahlungsbetrag\n(EUR)"
+
+; Zahlungsgrund/Verwendungszweck
+zweck1 = "Rechnungs-Nr."
+zweck2 = "Zahlungsgrund / Verwendungszweck"
+
+
+; spezielle Einstellung für den Verwendungszweck
+[Verwendungszweck]
+; Prefix
+prefixZweck1 = "RNr:"
+prefixZweck2 = ""
+
+; Trennungszeichen zwischen beiden Zeilen
+trenner = ";"

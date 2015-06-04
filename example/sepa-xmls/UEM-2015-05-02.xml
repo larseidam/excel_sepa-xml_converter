@@ -3,7 +3,7 @@
   <CstmrCdtTrfInitn>
     <GrpHdr>
       <MsgId>SEPA File Identifier</MsgId>
-      <CreDtTm>2015-06-03T16:16:48Z</CreDtTm>
+      <CreDtTm>2015-06-04T15:38:02Z</CreDtTm>
       <NbOfTxs>1</NbOfTxs>
       <CtrlSum>30.23</CtrlSum>
       <InitgPty>
@@ -20,7 +20,7 @@
           <Cd>SEPA</Cd>
         </SvcLvl>
       </PmtTpInf>
-      <ReqdExctnDt>2015-06-03</ReqdExctnDt>
+      <ReqdExctnDt>2015-06-04</ReqdExctnDt>
       <Dbtr>
         <Nm>Test Bank</Nm>
       </Dbtr>
