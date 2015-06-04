@@ -32,17 +32,23 @@ Installation
 ------------
 
 ####Windows
-* download PHP Binary from [Windows PHP Website](http://windows.php.net/download/)  
+* Windows Branch auschecken oder runterladen und entpacken
+* PHP Binary von [Windows PHP Website](http://windows.php.net/download/) runterladen  
   **Direktlinks:**
     * [PHP Binary 32-bit](http://windows.php.net/downloads/releases/php-5.6.9-nts-Win32-VC11-x86.zip)
     * [PHP Binary 64-bit](http://windows.php.net/downloads/releases/php-5.6.9-nts-Win32-VC11-x64.zip)
 * runtergeladene Zip-Datei in den Ordner `php-binary` im Projektordner entpacken
-* ...
+* Program mit folgendem Befehl starten
+  `php-binary\php.exe main.php`
+> Im Windows Branch sind die verwendeten Bibliotheken direkt enthalten und müssen nicht mittels Composer installiert
+  werden, da meist kein git usw. zur Verfügung steht.
 
 ####Linux
+* Master Branch auschecken oder runterladen und entpacken
 * Ausführen des Installations-Scripts (eventuell vorher ausführbar machen mit `chmod +x install.sh`)  
   `./install.sh`
-
+* Program mit folgendem Befehl starten
+  `php main.php`
 
 Benutzung
 ------------
@@ -50,7 +56,11 @@ Benutzung
   enthaltenen Überweisungsmappen-Bezeichner anzeigen lassen. Folgender
   Befehl erzeugt die Liste:
   
-  `php main.php --list`
+  **Windows (cmd)**  
+  `php-binary\php.exe main.php --list`
+  
+  **Linux (bash)**                  
+  `php main.php --list`       
 
   mögliche Ausgabe:
   
@@ -63,14 +73,21 @@ Benutzung
   zu transformieren. Folgender Befehl erzeugt eine SEPA-XML Datei für den
   Bezeichner UEM-2015-05-02:
   
+  **Windows (cmd)**  
+  `php-binary\php.exe main.php --map=UEM-2015-05-02`
+    
+  **Linux (bash)**  
   `php main.php --map=UEM-2015-05-02`
 
   mögliche Ausgabe:
   
-    Zeile 12: IBYLADEM1001 ist kein gültiger BIC und wird deswegen nicht übernommen!
-    Anzahl an Zeilen in der Excel-Tabelle: 10
-    Anzahl an Überweisungen: 10
-    Gesamtsumme: 1377.45
+    Folgende Probleme sind während der Erstellung der SEPA-XML-Datei aufgetreten:
+      Zeile 4: iBYLADEM1001 ist kein gültiger BIC und wird deswegen nicht übernommen!
+    
+    Zusammenfassung:
+      Anzahl an Zeilen in der Excel-Tabelle: 1
+      Anzahl an Überweisungen: 1
+      Gesamtsumme: 500.76
 
   Danach ist eine UEM-2015-05-02.xml erzeugt worden und auf dem Bildschirm
   erscheinen Information, zu aufgetretenen Problemen und verarbeiteten Überweisungen.
