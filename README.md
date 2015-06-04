@@ -27,13 +27,30 @@ Anforderungen
 -------------
   PHP Konsolen Interpreter (Version >= 5.3.2)
 
+
+Installation
+------------
+
+####Windows
+* download PHP Binary from [Windows PHP Website](http://windows.php.net/download/)  
+  **Direktlinks:**
+    * [PHP Binary 32-bit](http://windows.php.net/downloads/releases/php-5.6.9-nts-Win32-VC11-x86.zip)
+    * [PHP Binary 64-bit](http://windows.php.net/downloads/releases/php-5.6.9-nts-Win32-VC11-x64.zip)
+* runtergeladene Zip-Datei in den Ordner `php-binary` im Projektordner entpacken
+* ...
+
+####Linux
+* Ausführen des Installations-Scripts (eventuell vorher ausführbar machen mit `chmod +x install.sh`)  
+  `./install.sh`
+
+
 Benutzung
 ------------
   Zuerst kann der Benutzer eine Liste aller in der Excel-Tabelle
   enthaltenen Überweisungsmappen-Bezeichner anzeigen lassen. Folgender
   Befehl erzeugt die Liste:
   
-    php main.php --list
+  `php main.php --list`
 
   mögliche Ausgabe:
   
@@ -46,7 +63,7 @@ Benutzung
   zu transformieren. Folgender Befehl erzeugt eine SEPA-XML Datei für den
   Bezeichner UEM-2015-05-02:
   
-    php main.php --map=UEM-2015-05-02
+  `php main.php --map=UEM-2015-05-02`
 
   mögliche Ausgabe:
   
@@ -60,7 +77,25 @@ Benutzung
 
   Weitere Programm-Parameter können mit folgendem Befehl angezeigt werden;
   
-    php main.php --help
+  `php main.php --help`
+
+
+Benutzeroberfläche
+------------------
+
+####Windows
+  Für eine bessere Benutzterfreundlichkeit existiert ein Powershell-Skript, welches eine minmale Benutzeroberfläche
+  bereitstellt und die Bedienung etwas erleichtert. Voraussetzung ist allerdings das man die rechte besitzt
+  Powershell-Skripte auszuführen.  
+  Zum Start des Skripts folgenden Befehl in die Konsole eingeben:  
+  `powershell <projektpfad>\run.ps1`
+  
+####Linux
+  Für eine bessere Benutzterfreundlichkeit existiert ein Bash-Skript, welches eine minimale Benutzerführung bereitstellt
+  und die Bedienung etwas erleichtert.
+  Zum Start des Skripts folgenden Befehl in die Konsole eingeben (eventuell vorher ausführbar machen mit `chmod +x run.sh`):  
+  `run.sh`
+
 
 Konfigurationsmöglichkeiten (config.ini)
 ---------------------------

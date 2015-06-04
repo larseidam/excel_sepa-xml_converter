@@ -71,17 +71,17 @@
 
             // Prüfungen ob bestimmte Werte (Betrag, IBAN, BIC) syntaktisch korrekt sind, wenn nicht Log-Ausgabe
             if (1 != preg_match($config['Kontrollregex']['betragregex'], $betrag)){
-                $messages[] = "Zeile " . ($currentMapRowNumber + 1) . ": " . $betrag . " ist kein gültiger Betrag und wird deswegen nicht übernommen!";
+                $messages[] = "  Zeile " . ($currentMapRowNumber + 1) . ": " . $betrag . " ist kein gültiger Betrag und wird deswegen nicht übernommen!";
                 $betrag = "";
             }
             $iban = str_replace(" ", "", $iban);
             if (1 != preg_match($config['Kontrollregex']['ibanregex'], $iban)){
-                $messages[] = "Zeile " . ($currentMapRowNumber + 1) . ": " . $iban . " ist kein gültiger IBAN und wird deswegen nicht übernommen!";
+                $messages[] = "  Zeile " . ($currentMapRowNumber + 1) . ": " . $iban . " ist kein gültiger IBAN und wird deswegen nicht übernommen!";
                 $iban = "";
             }
             $bic = str_replace(" ", "", $bic);
             if (1 != preg_match($config['Kontrollregex']['bicregex'], $bic)){
-                $messages[] = "Zeile " . ($currentMapRowNumber + 1) . ": " . $bic . " ist kein gültiger BIC und wird deswegen nicht übernommen!";
+                $messages[] = "  Zeile " . ($currentMapRowNumber + 1) . ": " . $bic . " ist kein gültiger BIC und wird deswegen nicht übernommen!";
                 $bic = "";
             }
 
@@ -99,14 +99,19 @@
             $paymentInformation->addTransfer($transfer);
         }
 
+        if (0 == count($messages)) {
+            $messages[] = "  keine";
+        }
         // Log-Ausgabe von Kontroll-Informationen
         $messages[] = "";
+        $messages[] = "Zusammenfassung:";
         // Wieviele Excel-Tabellen-Zeilen wurden verarbeitet
-        $messages[] = "Anzahl an Zeilen in der Excel-Tabelle: " . count($currentMapRows);
+        $messages[] = "  Anzahl an Zeilen in der Excel-Tabelle: " . count($currentMapRows);
         // Wieviele Überweisungen urden angelegt
-        $messages[] = "Anzahl an Überweisungen: " . $paymentInformation->getNumberOfTransactions();
+        $messages[] = "  Anzahl an Überweisungen: " . $paymentInformation->getNumberOfTransactions();
         // Was ist die Gesamtsumme von allen Überweisungen
-        $messages[] = "Gesamtsumme: " . (($paymentInformation->getControlSumCents()) / 100);
+        $messages[] = "  Gesamtsumme: " . (($paymentInformation->getControlSumCents()) / 100);
+        $messages[] = "";
 
         // Zahlungsinformationen zur SEPA-Datei hinzufügen
         $sepaFile->addPaymentInformation($paymentInformation);

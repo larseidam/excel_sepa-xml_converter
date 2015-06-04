@@ -208,8 +208,9 @@
         }
     }
     if (0 != count($messages)) {
-        echo "Folgende Probleme sind während der Erstellung der SEPA-XML-Datei aufgetreten:" . PHP_EOL . "  ";
-        echo implode($messages, PHP_EOL . "  ");
+        echo PHP_EOL;
+        echo "Folgende Probleme sind während der Erstellung der SEPA-XML-Datei aufgetreten:" . PHP_EOL;
+        echo implode($messages, PHP_EOL);
         echo PHP_EOL;
     }
     exit(0);

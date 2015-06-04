@@ -1,12 +1,12 @@
 {
-  "name": "larseidam/quicken_sepa_xml",
-  "description": "description_text",
+  "name": "larseidam/excel_sepa-xml_converter",
+  "description": "Tool to convert data from an Excel table to a SEPA-XML file",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "GPLv2",
   "authors": [
     {
-      "name": "author's name",
-      "email": "email@example.com"
+      "name": "Lars Eidam",
+      "email": "larseidam@googlemail.com"
     }
   ],
   "require": {

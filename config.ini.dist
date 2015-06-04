@@ -1,19 +1,19 @@
 ﻿; Allgemeine Konfiguration
 [Allgemein]
 ; Speicherort der Excel-Tabelle
-tabellenpfad = "example.xlsx"
+tabellenpfad = "example\\example.xlsx"
 
 ; Speicherort für die SEPA-XML-Datei
-sepapfad = "sepa-xml/"
+sepapfad = "example\\sepa-xmls\\"
 
 ; Speicherort für die LOG-Datei
-logpfad = "logs/"
+logpfad = "example\\logs\\"
 
 ; Namenszeile in der Excel-Tabelle
-namenszeile = 2
+namenszeile = 1
 
 ; Name der Überweisungsmappenspalte
-mapspaltenname = "Überweisungs-Bezeichner"
+mapspaltenname = "Überweisungs-mappe vom"
 
 
 ; Regex Ausdrücke die verschiedene Werte während der Verarbeitung prüfen und im Fehlerfahl eine Nachricht erzeugen
