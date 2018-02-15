@@ -7,13 +7,13 @@ Anwendungsfall
 --------------
   Tabelle mit Überweisungsdaten (Empfängername, IBAN, BIC, Betrag usw.)
   soll in ein Bankverwaltungsprogramm (z.B. Quicken) geladen werden. Um
-  dies zu ermöglicheine ist ein Austauschformat zu benutzten, in diesem
+  dies zu ermöglichen, ist ein Austauschformat zu benutzten, in diesem
   Fall SEPA-XML. Damit können sowohl Lastschriften als auch Überweisungen
   ausgetauscht werden. Da nicht immer alle Zeilen einer Excel-Tabelle
   in eine xml Datei portiert werden sollen, werden so genannten
   Überweisungsmappen-Bezeichner (z.B.: UEM-2015-05-02) verwendet. Dadurch
   kann jede Zeile mit einem Bezeichner versehen werden. Im Programm wird
-  dann später ein Überweisungsmappen-Bezeichner ausgewählt für den eine
+  dann später ein Überweisungsmappen-Bezeichner ausgewählt, für den eine
   SEPA-XML Datei erstellt werden soll.
 
 Einschränkung
@@ -31,7 +31,7 @@ Anforderungen
 Installation
 ------------
 
-####Windows
+#### Windows
 * Windows Branch auschecken oder runterladen und entpacken
 * PHP Binary von [Windows PHP Website](http://windows.php.net/download/) runterladen  
   **Direktlinks:**
@@ -45,7 +45,7 @@ Installation
     Im Windows Branch sind die verwendeten Bibliotheken direkt enthalten und müssen nicht mittels Composer installiert
     werden, da meist kein git usw. zur Verfügung steht.
 
-####Linux
+#### Linux
 * Master Branch auschecken oder runterladen und entpacken
 * Ausführen des Installations-Scripts (eventuell vorher ausführbar machen mit `chmod +x install.sh`)  
   `./install.sh`
@@ -102,14 +102,14 @@ Benutzung
 Benutzeroberfläche
 ------------------
 
-####Windows
+#### Windows
   Für eine bessere Benutzterfreundlichkeit existiert ein Powershell-Skript, welches eine minmale Benutzeroberfläche
   bereitstellt und die Bedienung etwas erleichtert. Voraussetzung ist allerdings das man die rechte besitzt
   Powershell-Skripte auszuführen.  
   Zum Start des Skripts folgenden Befehl in die Konsole eingeben:  
   `powershell <projektpfad>\run.ps1`
   
-####Linux
+#### Linux
   Für eine bessere Benutzterfreundlichkeit existiert ein Bash-Skript, welches eine minimale Benutzerführung bereitstellt
   und die Bedienung etwas erleichtert.
   Zum Start des Skripts folgenden Befehl in die Konsole eingeben (eventuell vorher ausführbar machen mit `chmod +x run.sh`):  
@@ -118,26 +118,26 @@ Benutzeroberfläche
 
 Konfigurationsmöglichkeiten (config.ini)
 ---------------------------
-###Allgemein
+### Allgemein
   * Speicherort der Excel-Tabelle
   * Zeilennummer mit den Spaltenbezeichnungen
   * Spaltenname in der die Überweisungsmappen-Bezeichner stehen
   * Speicherort der xml Dateien
   * Speicherort der log Dateien
 
-###Datenprüfung (Regulärer Ausdrücke für die syntaktische Überprüfung von)
+### Datenprüfung (Regulärer Ausdrücke für die syntaktische Überprüfung von)
   * Überweisungsmappen-Bezeichner
   * Betrag
   * IBAN
   * BIC
 
-###Sender-Konto
+### Sender-Konto
   * IBAN des Importkontos
   * BIC des Importkontos
   * Name des Importkontos
   * Firmenname des Importkontos
 
-###Spaltennamen in Excel-Tabelle
+### Spaltennamen in Excel-Tabelle
   * Spaltenname für die IBANs
   * Spaltenname für die BICs
   * Spaltenname für die Empfängernamen
@@ -145,7 +145,7 @@ Konfigurationsmöglichkeiten (config.ini)
   * Spaltenname für die erste Zeile des Verwendungszwecks
   * Spaltenname für die zweite Zeile des Verwendungszwecks
 
-###Verwendungszweck
+### Verwendungszweck
   * Prefix für Verwendungszweck Zeile 1
   * Prefix für Verwendungszweck Zeile 2
   * Trennzeichen zwichen Verwendungszweck Zeile 1 und Zeile 2
